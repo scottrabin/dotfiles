@@ -1,4 +1,4 @@
-all: link vundle command-t
+all: link vundle
 
 link:
 	if [ -e ~/.vimrc ]; then mv ~/.vimrc ~/.vimrc.bkp; fi
@@ -7,10 +7,8 @@ link:
 vundle:
 	git submodule init
 	git submodule update
+	vim +BundleClean +qall
 	vim +BundleInstall +qall
-
-command-t:
-	cd ~/.vim/bundle/Command-T; bundle install; rake make
 
 clean:
 	rm -rf ~/.vim/bundle/*
