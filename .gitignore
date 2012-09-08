@@ -2,8 +2,3 @@ backup
 swap
 undo
 viminfo
-
-# ignore bundles except for vundle
-!bundle/
-bundle/*
-!bundle/vundle/
