@@ -22,3 +22,9 @@
 [submodule "bundle/vim-colors-solarized"]
 	path = bundle/vim-colors-solarized
 	url = git@github.com:/altercation/vim-colors-solarized
+[submodule "bundle/vim-less"]
+	path = bundle/vim-less
+	url = git@github.com:/groenewege/vim-less
+[submodule "bundle/scss-syntax.vim"]
+	path = bundle/scss-syntax.vim
+	url = git@github.com:/cakebaker/scss-syntax.vim
