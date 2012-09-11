@@ -1,4 +1,4 @@
-all: link vundle
+all: link bundle
 
 link:
 	if [ -e ~/.vimrc ]; then mv ~/.vimrc ~/.vimrc.bkp; fi
