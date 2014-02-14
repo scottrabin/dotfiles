@@ -1,0 +1,10 @@
+Cache
+GPUCache
+Local Storage
+SingletonCookie
+SingletonLock
+SingletonSocket
+cookies
+cookies-journal
+logs
+ltcache
