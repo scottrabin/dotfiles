@@ -13,4 +13,7 @@
 {:+ {:app {}
 
      :editor {"alt-w" [:editor.watch.watch-selection]
-              "alt-shift-w" [:editor.watch.unwatch]}}}
+              "alt-shift-w" [:editor.watch.unwatch]
+              "ctrl-/" [:toggle-comment-selection]
+              "pmeta-[" [:tabs.prev]
+              "pmeta-]" [:tabs.next]}}}

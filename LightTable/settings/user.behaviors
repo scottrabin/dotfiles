@@ -16,8 +16,9 @@
 
      ;; The editor tag is applied to all editors
      :editor [:lt.objs.editor/no-wrap
-              (:lt.objs.style/set-theme "default")
-              :lt.plugins.vim/activate-vim]
+              (:lt.objs.style/set-theme "lesser-dark")
+              :lt.plugins.vim/activate-vim
+              :lt.objs.editor/line-numbers]
 
      :files [(:lt.objs.files/file-types [{:exts [:cljx]
                                           :mime "text/x-clojure"
