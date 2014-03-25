@@ -20,11 +20,6 @@
               :lt.plugins.vim/activate-vim
               :lt.objs.editor/line-numbers]
 
-     :files [(:lt.objs.files/file-types [{:exts [:cljx]
-                                          :mime "text/x-clojure"
-                                          :name "CljX"
-                                          :tags [:editor.clj :editor.clojure]}])]
-
      ;; Here we can add behaviors to just clojure editors
      :editor.clojure [(:lt.plugins.clojure/print-length 1000)]}
 
