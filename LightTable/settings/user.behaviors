@@ -16,9 +16,12 @@
 
      ;; The editor tag is applied to all editors
      :editor [:lt.objs.editor/no-wrap
-              (:lt.objs.style/set-theme "lesser-dark")
+              (:lt.objs.style/set-theme "solarized")
               :lt.plugins.vim/activate-vim
               :lt.objs.editor/line-numbers]
+
+     ;; golang
+     :editor.go [(:lt.objs.editor/tab-settings true 4 4)]
 
      ;; Here we can add behaviors to just clojure editors
      :editor.clojure [(:lt.plugins.clojure/print-length 1000)]}
