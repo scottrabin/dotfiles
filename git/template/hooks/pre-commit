@@ -31,25 +31,24 @@ fi
 # determine which revision we are diffing against
 if git rev-parse --verify HEAD >/dev/null 2>&1
 then
-	revision=HEAD
+	REVISION=HEAD
 else
 	# Initial commit: diff against an empty tree object
-	revision=4b825dc642cb6eb9a060e54bf8d69288fbee4904
+	REVISION=4b825dc642cb6eb9a060e54bf8d69288fbee4904
 fi
 
 # determine which files have actually changed
 declare -a FILES
-FILES=$(git diff --cached --name-only --diff-filter=ACM "${revision}")
+FILES=$(git diff --cached --name-only --diff-filter=ACM "${REVISION}")
 
 for hook in ./.git/hooks/pre-commit.d/*
 do
   if [[ -x "$hook" ]]
   then
-    $hook $FILES
+    REVISION=$REVISION $hook $FILES
 
     if [ "$?" -ne 0 ]
     then
-      echo "Hook $hook failed"
       exit 1
     fi
   else
