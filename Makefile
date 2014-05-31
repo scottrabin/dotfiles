@@ -2,7 +2,7 @@ all: link bundle
 
 link:
 	if [ -e ~/.vimrc ]; then mv ~/.vimrc ~/.vimrc.bkp; fi
-	ln -s ~/.vim/vim.config ~/.vimrc
+	ln -s ~/.vim/.vimrc ~/.vimrc
 
 bundle:
 	git submodule init
