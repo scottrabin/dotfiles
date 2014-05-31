@@ -4,8 +4,10 @@ DIR := $(abspath $(dir $(lastword $(MAKEFILE_LIST))))
 all: link bundle
 
 link:
+ifneq ($(shell readlink $(HOME)/.vimrc),$(DIR)/.vimrc)
 	if [ -e ~/.vimrc ]; then mv ~/.vimrc ~/.vimrc.bkp; fi
 	ln -s ~/.vim/.vimrc ~/.vimrc
+endif
 
 ifneq ($(strip $(GOROOT)),)
 bundle/go: $(GOROOT)/misc/vim
