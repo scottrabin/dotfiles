@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 #
 # Prevent committing files with non-ASCII characters in the name
 # Extracted from the pre-commit.sample file in the standard git template
@@ -9,16 +9,15 @@
 # Note that the use of brackets around a tr range is ok here, (it's
 # even required, for portability to Solaris 10's /usr/bin/tr), since
 # the square bracket bytes happen to fall in the designated range.
-non_ascii_files=$(git diff --cached --name-only --diff-filter=A $REVISION -z |
-  tr '\0' "\n" |
-  grep '[^ -~]')
-if [ "$?" -eq 0 ]
-then
-  # Redirect output to stderr.
-  exec 1>&2
+non_ascii_files=$(git diff --cached --name-only --diff-filter=A "$REVISION" -z |
+	tr '\0' "\n" |
+	grep '[^ -~]')
+if [[ $? == 0 ]]; then
+	# Redirect output to stderr.
+	exec 1>&2
 
-  echo "Error: Attempt to add a non-ascii file name."
-  echo $non_ascii_files
+	echo "Error: Attempt to add a non-ascii file name."
+	echo $non_ascii_files
 
-  exit 1
+	exit 1
 fi
