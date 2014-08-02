@@ -1,13 +1,18 @@
 GOROOT = $(shell go env GOROOT)
 DIR := $(abspath $(dir $(lastword $(MAKEFILE_LIST))))
 
-all: link bundle
+all: bundle $(HOME)/.vim $(HOME)/.vimrc
 
-link:
-ifneq ($(shell readlink $(HOME)/.vimrc),$(DIR)/.vimrc)
-	if [ -e ~/.vimrc ]; then mv ~/.vimrc ~/.vimrc.bkp; fi
-	ln -s ~/.vim/.vimrc ~/.vimrc
-endif
+$(HOME)/.vim: $(DIR)
+	if [ -e $@ ]; then mv $@ $@.bkp; fi
+	ln -s $< $@
+
+$(HOME)/.vimrc: $(DIR)/.vimrc
+	if [ -e $@ ]; then mv $@ $@.bkp; fi
+	ln -s $< $@
+
+bundle: bundle/go
+	git submodule update --init --recursive
 
 ifneq ($(strip $(GOROOT)),)
 bundle/go: $(GOROOT)/misc/vim
@@ -17,7 +22,4 @@ bundle/go:
 	$(info `go` is not installed; skipping)
 endif
 
-bundle: bundle/go
-	git submodule update --init --recursive
-
-.PHONY: all link bundle
+.PHONY: all bundle

@@ -1,3 +1,4 @@
+# lighttable
 Cache
 GPUCache
 Local Storage
@@ -8,3 +9,11 @@ cookies
 cookies-journal
 logs
 ltcache
+
+# vim
+vim/backup
+vim/swap
+vim/undo
+vim/viminfo
+vim/tags
+vim/bundle/go
