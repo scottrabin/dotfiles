@@ -4,11 +4,11 @@ DIR := $(abspath $(dir $(lastword $(MAKEFILE_LIST))))
 all: bundle $(HOME)/.vim $(HOME)/.vimrc
 
 $(HOME)/.vim: $(DIR)
-	if [ -e $@ ]; then mv $@ $@.bkp; fi
+	if [ -e $@ -a ! -h $@ ]; then mv $@ $@.bkp; fi
 	ln -s $< $@
 
 $(HOME)/.vimrc: $(DIR)/.vimrc
-	if [ -e $@ ]; then mv $@ $@.bkp; fi
+	if [ -e $@ -a ! -h $@ ]; then mv $@ $@.bkp; fi
 	ln -s $< $@
 
 bundle: bundle/go
