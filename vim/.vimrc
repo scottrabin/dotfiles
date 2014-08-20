@@ -43,7 +43,10 @@ autocmd InsertEnter * match
 autocmd BufNewFile,BufReadPost *.cljx setfiletype clojure
 
 " pep8 4-spaces instead of tabs
-autocmd Filetype python setlocal expandtab tabstop=4 shiftwidth=4
+autocmd FileType python setlocal expandtab tabstop=4 shiftwidth=4
+
+" Run go-fmt on go files on save
+autocmd FileType go autocmd BufWritePre <buffer> Fmt
 
 " tabs
 set tabstop=4     " tabs are 4 spaces wide
