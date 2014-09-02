@@ -62,6 +62,9 @@ set smartcase     " if the search pattern contains uppercase characters, use cas
 set ignorecase    " default ignore case when searching
 highlight IncSearch term=reverse cterm=reverse ctermfg=3 guifg=Black guibg=Yellow
 
+set colorcolumn=80
+set textwidth=96
+
 " change backup directory
 if isdirectory($HOME . '/.vim/backup') == 0
 	:silent !mkdir -p ~/.vim/backup >/dev/null 2>&1
