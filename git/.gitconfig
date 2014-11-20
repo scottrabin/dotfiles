@@ -14,7 +14,7 @@
 [rerere]
 	enabled = 1
 [branch]
-	autosetuprebase = never
+	autosetuprebase = always
 [push]
 	default = upstream
 [difftool]
