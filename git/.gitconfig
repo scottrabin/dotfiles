@@ -1,6 +1,8 @@
 [core]
 	whitespace = space-before-tab,trailing-space,cr-at-eol
 	editor = vim
+[alias]
+	up = "!git remote update -p; git merge --ff-only @{u}"
 [color "branch"]
 	current = yellow reverse
 	local = yellow
