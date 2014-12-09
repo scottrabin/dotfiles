@@ -1,0 +1,29 @@
+#!/usr/bin/env bash
+
+if [ "$1" == "-h" ]; then
+	echo "Usage: git cmp [<compare_branch>]"
+	echo
+	echo "Compares the current branch against <compare_branch> on the remote"
+	echo "Github repository designated as 'origin'.	(default: master)"
+	exit 0
+fi
+
+compare_to=${1:-"master"}
+current_branch=$(git symbolic-ref --short HEAD)
+if [[ $? -ne 0 ]]; then
+	echo "Unable to get current branch; aborting" 1>&2
+	exit 1
+elif [[ $compare_to = $current_branch ]]; then
+	echo "Cannot compare branch ${compare_to} to itself; aborting" 1>&2
+	exit 1
+fi
+
+if [[ $(git config remote.origin.url) =~ [^:]+:([^/]+)/(.+)$  ]]; then
+	user=${BASH_REMATCH[1]}
+	repo=${BASH_REMATCH[2]}
+else
+	echo "Unable to determine repository owner and name; aborting" 1>&2
+	exit 1
+fi
+
+open "https://github.com/$user/$repo/compare/$current_branch"
