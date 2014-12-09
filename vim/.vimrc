@@ -39,14 +39,34 @@ autocmd InsertLeave,ColorScheme,FileType *
 " red highlight can get very annoying
 autocmd InsertEnter * match
 
-" add recognition for cljx as clojure files
-autocmd BufNewFile,BufReadPost *.cljx setfiletype clojure
-
 " pep8 4-spaces instead of tabs
 autocmd FileType python setlocal expandtab tabstop=4 shiftwidth=4
 
 " Run go-fmt on go files on save
 autocmd FileType go autocmd BufWritePre <buffer> Fmt
+
+" Rainbow Parentheses: always on
+au VimEnter * RainbowParenthesesToggle
+au Syntax * RainbowParenthesesLoadRound
+au Syntax * RainbowParenthesesLoadSquare
+au Syntax * RainbowParenthesesLoadBraces
+let g:rbpt_colorpairs = [
+			\ ['brown',       'RoyalBlue3'],
+			\ ['Darkblue',    'SeaGreen3'],
+			\ ['darkgray',    'DarkOrchid3'],
+			\ ['darkgreen',   'firebrick3'],
+			\ ['darkcyan',    'RoyalBlue3'],
+			\ ['darkred',     'SeaGreen3'],
+			\ ['darkmagenta', 'DarkOrchid3'],
+			\ ['brown',       'firebrick3'],
+			\ ['gray',        'RoyalBlue3'],
+			\ ['darkmagenta', 'DarkOrchid3'],
+			\ ['Darkblue',    'firebrick3'],
+			\ ['darkgreen',   'RoyalBlue3'],
+			\ ['darkcyan',    'SeaGreen3'],
+			\ ['darkred',     'DarkOrchid3'],
+			\ ]
+let g:rbpt_max = len(g:rbpt_colorpairs)
 
 " tabs
 set tabstop=4     " tabs are 4 spaces wide
@@ -96,6 +116,7 @@ let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files']
 
 " custom functions
 let mapleader = ","
+let maplocalleader = "\\"
 
 " tabs
 map <leader>a :tabnew<cr>
