@@ -3,6 +3,9 @@
 	editor = vim
 [alias]
 	up = "!git remote update -p; git merge --ff-only @{u}"
+	st = "!git status -sb"
+[advice]
+	statusHints = false
 [color "branch"]
 	current = yellow reverse
 	local = yellow
