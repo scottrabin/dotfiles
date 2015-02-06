@@ -18,8 +18,8 @@ elif [[ $compare_to = $current_branch ]]; then
 	exit 1
 fi
 
-if [[ $(git config remote.origin.url) =~ [^:]+:([^/]+)/(.+)$  ]]; then
-	user=${BASH_REMATCH[1]}
+if [[ $(git config remote.origin.url) =~ [^:]+:(.+)/(.+)$  ]]; then
+	user=${BASH_REMATCH[1]#/}
 	repo=${BASH_REMATCH[2]}
 	if [[ "${repo}" =~ (.+)\.git$ ]]; then
 		repo=${BASH_REMATCH[1]}
