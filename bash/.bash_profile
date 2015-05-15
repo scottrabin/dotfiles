@@ -39,3 +39,5 @@ __prompt_command () {
 
     PS1="\[$RESET\]\[$GREEN\]\u \[$CYAN\]\w \[$GIT_BRANCH_COLOR\]\$(__git_ps1 '(%s)')\[$RESET\]\n$PROMPT \[$RESET\]"
 }
+
+alias ls="ls -G"
