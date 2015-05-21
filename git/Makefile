@@ -6,6 +6,9 @@ $(HOME)/.gitconfig: $(path)/.gitconfig
 	cp $< $@
 	git config --global init.templatedir $(path)/template
 	git config --global core.excludesfile $(path)/.gitignore
+ifeq ($(shell uname -s),Darwin)
+	git config --global credential.helper osxkeychain
+endif
 	@read -p "Git user.name: " username; \
 	git config --global user.name "$$username"
 	@read -p "Git user.email: " useremail; \
