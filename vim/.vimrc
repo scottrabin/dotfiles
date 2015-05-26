@@ -42,9 +42,6 @@ autocmd InsertEnter * match
 " pep8 4-spaces instead of tabs
 autocmd FileType python setlocal expandtab tabstop=4 shiftwidth=4
 
-" Run go-fmt on go files on save
-autocmd FileType go autocmd BufWritePre <buffer> Fmt
-
 " Indent most of the form, even for very large ones (e.g. in tests)
 let g:clojure_maxlines = 300
 
