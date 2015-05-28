@@ -1,5 +1,5 @@
 # if `rbenv` exists and is not on $PATH, put it on the path and initialize it
-if hash rbenv 2>/dev/null && [[ $PATH != *$HOME/.rbenv/bin* ]]; then
+if [[ -d "${HOME}/.rbenv" ]] && [[ $PATH != *$HOME/.rbenv/bin* ]]; then
 	export PATH="$HOME/.rbenv/bin:$PATH"
 	eval "$(rbenv init -)"
 fi
