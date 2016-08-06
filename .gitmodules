@@ -64,3 +64,6 @@
 [submodule "vim/bundle/vim-jdaddy"]
 	path = vim/bundle/vim-jdaddy
 	url = git://github.com/tpope/vim-jdaddy.git
+[submodule "vim/bundle/elm.vim"]
+	path = vim/bundle/elm.vim
+	url = git://github.com/lambdatoast/elm.vim.git
