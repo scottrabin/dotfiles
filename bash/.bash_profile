@@ -9,12 +9,7 @@ if [[ $PATH != *$HOME/bin* ]]; then
 	export PATH="$HOME/bin:$PATH"
 fi
 
-# if in a Mac OSX environment with Homebrew installed
-if hash brew 2> /dev/null; then
-	if [[ -f $(brew --prefix)/etc/bash_completion ]]; then
-		. $(brew --prefix)/etc/bash_completion
-	fi
-fi
+[ -f /usr/local/etc/bash_completion  ] && . /usr/local/etc/bash_completion
 
 export TERM=screen-256color
 
