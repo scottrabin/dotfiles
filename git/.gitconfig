@@ -1,6 +1,6 @@
 [core]
 	whitespace = space-before-tab,trailing-space,cr-at-eol
-	editor = vim
+	editor = code --wait
 [alias]
 	up = "!git remote update -p; git merge --ff-only @{u}"
 	st = "!git status -sb"
