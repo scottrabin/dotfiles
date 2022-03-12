@@ -95,3 +95,7 @@ plugins=(git)
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
+
+if type "fnm" > /dev/null; then
+    eval "$(fnm env --use-on-cd)"
+fi
