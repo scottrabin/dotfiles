@@ -1,10 +1,7 @@
-all: git vim zsh bash
+all: git vim zsh bash ripgrep
 
 git:
 	make -C git
-
-vim:
-	make -C vim
 
 zsh:
 	make -C zsh
@@ -12,4 +9,7 @@ zsh:
 bash:
 	make -C bash
 
-.PHONY: git vim zsh bash
+ripgrep:
+	@rg --version >/dev/null 2>&1 || brew install ripgrep
+
+.PHONY: git vim zsh bash ripgrep
