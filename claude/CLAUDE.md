@@ -7,13 +7,9 @@
 - Never hallucinate; if something is unknown, say so and move on.
 
 ## Coding
-- Write tests first to specify behavior before implementing.
-- Use tests in the dev loop to verify correctness during changes.
+- Write tests first; use them in the dev loop to verify correctness during changes.
 - Do not refactor code unrelated to the requested change.
 - Keep methods under 50 statements where possible.
 
 ## Tool Usage
-- Prefer built-in tools (Read, Glob, Grep, LS) over equivalent Bash commands.
-- When a Bash command would require a permission prompt, use a built-in alternative instead.
-- In all search and traversal operations, exclude `node_modules`, `.git`, build artifact directories, and any path matched by `.gitignore`.
-- When a Bash search command is necessary, scope it with `git ls-files` or pass `--exclude-dir`/`--ignore-file` flags to respect `.gitignore`.
+- Prefer built-in tools (Read, Glob, Grep, LS) over Bash; if the Bash equivalent would require a permission prompt, always use the built-in.

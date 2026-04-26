@@ -1,56 +1,62 @@
 {
-	"theme": "auto",
-	"model": "sonnet",
-	"env": {
-		"MAX_THINKING_TOKENS": "10000",
-		"CLAUDE_AUTOCOMPACT_PCT_OVERRIDE": "50",
-		"CLAUDE_CODE_SUBAGENT_MODEL": "haiku"
-	},
-	"hooks": {
-		"PermissionRequest": [
-			{
-				"hooks": [
-					{
-						"type": "command",
-						"command": "afplay /System/Library/Sounds/Sosumi.aiff"
-					}
-				]
-			}
-		],
-		"Stop": [
-			{
-				"hooks": [
-					{
-						"type": "command",
-						"command": "afplay /System/Library/Sounds/Funk.aiff"
-					}
-				]
-			}
-		],
-		"PreToolUse": [
-			{
-				"matcher": "Read",
-				"hooks": [
-					{
-						"type": "command",
-						"command": "~/.claude/read-once/hook.sh"
-					}
-				]
-			}
-		],
-		"PostCompact": [
-			{
-				"matcher": "",
-				"hooks": [
-					{
-						"type": "command",
-						"command": "~/.claude/read-once/compact.sh"
-					}
-				]
-			}
-		]
-	},
-	"permissions": {
-		"allow": ["Read", "Glob", "Grep", "LS"]
-	}
+  "theme": "auto",
+  "model": "sonnet",
+  "env": {
+    "MAX_THINKING_TOKENS": "10000",
+    "CLAUDE_AUTOCOMPACT_PCT_OVERRIDE": "50",
+    "CLAUDE_CODE_SUBAGENT_MODEL": "haiku"
+  },
+  "hooks": {
+    "PermissionRequest": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "afplay /System/Library/Sounds/Sosumi.aiff"
+          }
+        ]
+      }
+    ],
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "afplay /System/Library/Sounds/Funk.aiff"
+          }
+        ]
+      }
+    ],
+    "PreToolUse": [
+      {
+        "matcher": "Read",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "~/.claude/read-once/hook.sh"
+          }
+        ]
+      }
+    ],
+    "PostCompact": [
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "~/.claude/read-once/compact.sh"
+          }
+        ]
+      }
+    ]
+  },
+  "permissions": {
+    "allow": [
+      "Read",
+      "Glob",
+      "Grep",
+      "LS"
+    ]
+  },
+  "editorMode": "vim"
 }
