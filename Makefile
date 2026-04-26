@@ -1,4 +1,4 @@
-all: git vim zsh bash ripgrep
+all: git vim zsh bash ripgrep claude
 
 git:
 	make -C git
@@ -12,4 +12,7 @@ bash:
 ripgrep:
 	@rg --version >/dev/null 2>&1 || brew install ripgrep
 
-.PHONY: git vim zsh bash ripgrep
+claude:
+	make -C claude
+
+.PHONY: git vim zsh bash ripgrep claude

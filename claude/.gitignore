@@ -1,0 +1,15 @@
+# Local runtime files — machine-specific, never commit
+history.jsonl
+mcp-needs-auth-cache.json
+
+# Local runtime directories
+backups/
+cache/
+downloads/
+file-history/
+plans/
+plugins/
+projects/
+session-env/
+sessions/
+shell-snapshots/
