@@ -1,0 +1,12 @@
+# Package manager and dependency directories
+node_modules/
+vendor/
+.venv/
+venv/
+env/
+
+# Build artifacts and generated output
+dist/
+build/
+out/
+target/
