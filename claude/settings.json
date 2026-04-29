@@ -59,5 +59,9 @@
   },
   "effortLevel": "medium",
   "theme": "auto",
-  "editorMode": "normal"
+  "editorMode": "normal",
+  "statusLine": {
+    "type": "command",
+    "command": "~/.claude/statusline-command.sh"
+  }
 }

@@ -2,7 +2,7 @@ path    := $(abspath $(dir $(lastword $(MAKEFILE_LIST))))
 DOTDIR  := $(HOME)/.claude
 
 .PHONY: all
-all: $(DOTDIR)/CLAUDE.md $(DOTDIR)/read-once $(DOTDIR)/settings.json $(DOTDIR)/skills/reflect
+all: $(DOTDIR)/CLAUDE.md $(DOTDIR)/read-once $(DOTDIR)/settings.json $(DOTDIR)/skills/reflect $(DOTDIR)/statusline-command.sh
 
 $(DOTDIR):
 	mkdir -p $@
@@ -18,6 +18,10 @@ $(DOTDIR)/settings.json: $(path)/settings.json | $(DOTDIR)
 
 $(DOTDIR)/skills/reflect: $(path)/skills/reflect | $(DOTDIR)/skills
 	ln -sfn $< $@
+
+$(DOTDIR)/statusline-command.sh: $(path)/statusline-command.sh | $(DOTDIR)
+	ln -sf $< $@
+	chmod +x $@
 
 $(DOTDIR)/read-once:
 	curl -fsSL https://raw.githubusercontent.com/Bande-a-Bonnot/Boucle-framework/main/tools/read-once/install.sh | bash
