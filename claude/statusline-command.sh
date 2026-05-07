@@ -5,8 +5,12 @@ input=$(cat)
 # Extract data from JSON input
 cwd=$(echo "$input" | jq -r '.workspace.current_dir // .cwd')
 project_dir=$(echo "$input" | jq -r '.workspace.project_dir // empty')
-worktree_name=$(echo "$input" | jq -r '.worktree.name // empty')
+worktree_name=$(echo "$input" | jq -r '.worktree.name // .workspace.git_worktree // empty')
 branch_name=$(echo "$input" | jq -r '.worktree.branch // empty')
+# Fall back to git for branch name in non-worktree sessions
+if [ -z "$branch_name" ] || [ "$branch_name" = "null" ]; then
+    branch_name=$(git -C "$cwd" branch --show-current 2>/dev/null)
+fi
 
 # Current turn token usage
 current_input=$(echo "$input" | jq -r '.context_window.current_usage.input_tokens // 0')
@@ -39,7 +43,7 @@ if [ -n "$worktree_name" ] && [ "$worktree_name" != "null" ]; then
     # Worktree exists; check if it's redundant with branch name
     if [ "$worktree_name" = "$branch_name" ]; then
         # Deduplicate: show only once
-        branch_elem=$(printf " \033[1;36m(⎇ %s)\033[0m" "$worktree_name")
+        branch_elem=$(printf " \033[1;36m⎇ %s\033[0m" "$worktree_name")
     else
         # Both exist and differ: show both
         branch_elem=$(printf " \033[1;36m(⎇ %s)\033[0m" "$worktree_name")
@@ -205,15 +209,15 @@ output="${output}${pipe_color} | \033[0m${tokens_elem}"
 
 # Add context bar if available
 if [ -n "$context_bar_elem" ]; then
-    output="${output}${pipe_color} | \033[0m${context_bar_elem}"
+    output="${output} 🧠 \033[0m${context_bar_elem}"
 fi
 
 # Add rate limits if available
 if [ -n "$five_hour_elem" ]; then
-    output="${output}${pipe_color} | \033[0m${five_hour_elem}"
-    if [ -n "$seven_day_elem" ]; then
-        output="${output} ${seven_day_elem}"
-    fi
+    output="${output} 🕔 \033[0m${five_hour_elem}"
+fi
+if [ -n "$seven_day_elem" ]; then
+    output="${output} 🗓️ ${seven_day_elem}"
 fi
 
 printf "%b" "$output"

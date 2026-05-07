@@ -57,11 +57,19 @@
       }
     ]
   },
-  "effortLevel": "medium",
-  "theme": "auto",
-  "editorMode": "normal",
   "statusLine": {
     "type": "command",
     "command": "~/.claude/statusline-command.sh"
+  },
+  "effortLevel": "medium",
+  "theme": "auto",
+  "editorMode": "normal",
+  "extraKnownMarketplaces": {
+    "claude-plugins-official": {
+      "source": {
+        "source": "git",
+        "url": "https://github.com/anthropics/claude-plugins-official.git"
+      }
+    }
   }
 }
