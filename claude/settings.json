@@ -61,9 +61,6 @@
     "type": "command",
     "command": "~/.claude/statusline-command.sh"
   },
-  "effortLevel": "medium",
-  "theme": "auto",
-  "editorMode": "normal",
   "extraKnownMarketplaces": {
     "claude-plugins-official": {
       "source": {
@@ -71,5 +68,9 @@
         "url": "https://github.com/anthropics/claude-plugins-official.git"
       }
     }
-  }
+  },
+  "effortLevel": "medium",
+  "theme": "auto",
+  "editorMode": "normal",
+  "tui": "fullscreen"
 }
