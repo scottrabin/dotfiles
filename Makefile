@@ -1,4 +1,4 @@
-all: git vim zsh bash ripgrep claude
+all: git vim zsh bash ripgrep claude codex
 
 git:
 	make -C git
@@ -15,4 +15,7 @@ ripgrep:
 claude:
 	make -C claude
 
-.PHONY: git vim zsh bash ripgrep claude
+codex:
+	make -C codex
+
+.PHONY: git vim zsh bash ripgrep claude codex

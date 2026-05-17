@@ -7,6 +7,8 @@ cwd=$(echo "$input" | jq -r '.workspace.current_dir // .cwd')
 project_dir=$(echo "$input" | jq -r '.workspace.project_dir // empty')
 worktree_name=$(echo "$input" | jq -r '.worktree.name // .workspace.git_worktree // empty')
 branch_name=$(echo "$input" | jq -r '.worktree.branch // empty')
+model_name=$(echo "$input" | jq -r '.model.display_name // empty')
+effort_level=$(echo "$input" | jq -r '.effort.level // empty')
 # Fall back to git for branch name in non-worktree sessions
 if [ -z "$branch_name" ] || [ "$branch_name" = "null" ]; then
     branch_name=$(git -C "$cwd" branch --show-current 2>/dev/null)
@@ -32,6 +34,16 @@ if [ -n "$project_dir" ] && [ "$project_dir" != "null" ]; then
     repo_name=$(basename "$project_dir")
 else
     repo_name=$(basename "$cwd")
+fi
+
+# Build model/effort element - dim cyan
+model_elem=""
+if [ -n "$model_name" ] && [ "$model_name" != "null" ]; then
+    if [ -n "$effort_level" ] && [ "$effort_level" != "null" ]; then
+        model_elem=$(printf "\033[2;36m%s (%s)\033[0m" "$model_name" "$effort_level")
+    else
+        model_elem=$(printf "\033[2;36m%s\033[0m" "$model_name")
+    fi
 fi
 
 # Build repo name element - bold yellow
@@ -180,29 +192,30 @@ if [ -n "$five_hour_pct" ] && [ "$five_hour_pct" != "null" ]; then
     fi
 fi
 
-# Build 7-day rate limit bar (only if >75% used)
+# Build 7-day rate limit bar (always shown if available)
 seven_day_elem=""
 if [ -n "$seven_day_pct" ] && [ "$seven_day_pct" != "null" ]; then
     usage=${seven_day_pct%.*}
     [ -z "$usage" ] && usage=0
+    seven_day_elem=$(draw_bar "$usage" "seven_day")
 
-    if [ $usage -gt 75 ]; then
-        seven_day_elem=$(draw_bar "$usage" "seven_day")
-
-        # Add reset time if available
-        if [ -n "$seven_day_reset" ] && [ "$seven_day_reset" != "null" ]; then
-            now=$(date +%s)
-            diff=$(($seven_day_reset - $now))
-            days=$((diff / 86400))
-            hours=$(((diff % 86400) / 3600))
-            seven_day_elem=$(printf "%s (7 day ↺ %dd %dh)" "$seven_day_elem" "$days" "$hours")
-        fi
+    # Add reset time if available
+    if [ -n "$seven_day_reset" ] && [ "$seven_day_reset" != "null" ]; then
+        now=$(date +%s)
+        diff=$(($seven_day_reset - $now))
+        days=$((diff / 86400))
+        hours=$(((diff % 86400) / 3600))
+        seven_day_elem=$(printf "%s (7 day ↺ %dd %dh)" "$seven_day_elem" "$days" "$hours")
     fi
 fi
 
 # Build final output with separators
-# Order: repo/branch → token counts → context bar → rate limit bars
-output="${repo_elem}${branch_elem}"
+# Order: model/effort → repo/branch → token counts → context bar → rate limit bars
+output=""
+if [ -n "$model_elem" ]; then
+    output="${model_elem}${pipe_color} | \033[0m"
+fi
+output="${output}${repo_elem}${branch_elem}"
 
 # Add token counts
 output="${output}${pipe_color} | \033[0m${tokens_elem}"

@@ -4,6 +4,10 @@
     "CLAUDE_AUTOCOMPACT_PCT_OVERRIDE": "50",
     "CLAUDE_CODE_SUBAGENT_MODEL": "haiku"
   },
+  "attribution": {
+    "commit": "",
+    "pr": ""
+  },
   "permissions": {
     "allow": [
       "Read",
@@ -12,7 +16,7 @@
       "LS"
     ]
   },
-  "model": "sonnet",
+  "model": "opusplan",
   "hooks": {
     "PermissionRequest": [
       {
@@ -69,8 +73,8 @@
       }
     }
   },
-  "effortLevel": "medium",
+  "effortLevel": "xhigh",
+  "tui": "fullscreen",
   "theme": "auto",
-  "editorMode": "normal",
-  "tui": "fullscreen"
+  "editorMode": "normal"
 }
