@@ -18,6 +18,10 @@
 - When the user states or confirms a coding standard (style, naming, structure, patterns to avoid), proactively suggest adding it to the project's CLAUDE.md (or global CLAUDE.md if it applies across projects) before implementing.
 - When the project CLAUDE.md or any repo files it references are out of sync with current code or decisions, propose updates.
 
+## Worktrees
+- After merging a worktree to main, call `ExitWorktree` with `action: "remove"` immediately — do not wait to be asked.
+- Never run `git worktree remove` or `git branch -d` before calling `ExitWorktree`; it breaks the session CWD.
+
 ## Tool Usage
 - Always use built-in tools (Read, Glob, Grep, LS) for read-only operations — never Bash for listing, reading, or searching files.
 - Avoid pointless pipes: never pipe `find` to `xargs ls` or similar; use LS/Glob directly.

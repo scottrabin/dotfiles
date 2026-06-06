@@ -13,12 +13,43 @@
       "Read",
       "Glob",
       "Grep",
-      "LS"
+      "LS",
+      "Bash(git diff *)",
+      "Bash(git diff)",
+      "Bash(git log *)",
+      "Bash(git log)",
+      "Bash(git status *)",
+      "Bash(git status)",
+      "Bash(git show *)",
+      "Bash(git blame *)",
+      "Bash(git branch *)",
+      "Bash(git branch)",
+      "Bash(git tag *)",
+      "Bash(git tag)",
+      "Bash(git stash list *)",
+      "Bash(git stash list)",
+      "Bash(git remote *)",
+      "Bash(git remote)",
+      "Bash(git rev-parse *)",
+      "Bash(git rev-list *)",
+      "Bash(git shortlog *)",
+      "Bash(git describe *)",
+      "Edit(.claude/worktrees/**)",
+      "Write(.claude/worktrees/**)"
     ]
   },
   "model": "opusplan",
   "hooks": {
     "PermissionRequest": [
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "~/.claude/hooks/git-worktree-write.sh"
+          }
+        ]
+      },
       {
         "hooks": [
           {
@@ -73,7 +104,7 @@
       }
     }
   },
-  "effortLevel": "xhigh",
+  "effortLevel": "medium",
   "tui": "fullscreen",
   "theme": "auto",
   "editorMode": "normal"

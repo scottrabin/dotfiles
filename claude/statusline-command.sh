@@ -104,12 +104,12 @@ draw_bar() {
         if [ $i -lt $filled ]; then
             case "$color_mode" in
                 context)
-                    if [ $block_pct -lt 60 ]; then
-                        r=0;   g=200; b=80
-                    elif [ $block_pct -lt 80 ]; then
-                        r=220; g=200; b=0
+                    if [ $block_pct -lt 50 ]; then
+                        ratio=$((block_pct * 2))
+                        r=$((ratio * 220 / 100)); g=200; b=$((80 - ratio * 80 / 100))
                     else
-                        r=220; g=40;  b=20
+                        ratio=$(((block_pct - 50) * 2))
+                        r=220; g=$((200 - ratio * 160 / 100)); b=20
                     fi
                     ;;
                 five_hour)
@@ -217,8 +217,8 @@ if [ -n "$model_elem" ]; then
 fi
 output="${output}${repo_elem}${branch_elem}"
 
-# Add token counts
-output="${output}${pipe_color} | \033[0m${tokens_elem}"
+# Add token counts on a new line
+output="${output}\n${tokens_elem}"
 
 # Add context bar if available
 if [ -n "$context_bar_elem" ]; then

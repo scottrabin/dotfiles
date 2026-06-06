@@ -5,6 +5,9 @@
 
 ## Workflow
 - Before editing, state the files you expect to change.
+- For ordinary edits within the active worktree, never request user confirmation. If an edit workflow appears to require confirmation, treat that as a workflow error: stop, verify that the work is being done from the active worktree with writable relative paths, and switch to a non-prompting edit path. Do not ask the user unless the action is destructive, outside the writable workspace, or explicitly requires escalation.
+- When editing files in the active worktree, prefer relative paths from that worktree and avoid any edit workflow that introduces a confirmation step for normal source changes.
+- Never create a merge commit unless the user explicitly requests one. When integrating branch work into another branch, use a linear-history method such as fast-forward, cherry-pick, or reapplying the diff instead of `git merge --no-ff` or any merge that would create a merge commit.
 
 ## Delegation
 - Recommend lower-cost sub-agents when a task can be split into independent slices and delegation is likely to reduce total token cost.
